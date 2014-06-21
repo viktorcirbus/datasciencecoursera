@@ -1,0 +1,17 @@
+{
+    "contents" : " #This function creates a special \"matrix\" object that can cache its inverse.\n  makeCacheMatrix <- function(x = matrix()) {\n     #clear inversematrix\n    inverse <- NULL\n     #set value\n      set <- function(y) {\n      x <<- y\n     #clear inversematrix\n     inverse <<- NULL   \n        }\n    #get statement\n       get <- function() x\n    #set statement\n      setinverse <- function(inversed) inverse <<- inversed\n      #get inverse\n       getinverse <- function() inverse\n     \n       #list of functions\n       list(set = set, get = get,\n                   setinverse = setinverse,\n                    getinverse = getinverse)    \n  }\n\n\n## This function computes the inverse of the special \"matrix\" returned by makeCacheMatrix above. If the inverse has already been calculated (and the matrix has not changed), then the cachesolve should retrieve the inverse from the cache.\n  \n\n  cacheSolve <- function(x, ...) {\n           ## Return a matrix that is the inverse of 'x'\n       #lookup inversed matrix if exists\n        inverse <- x$getinverse()\n     if(!is.null(inverse)) {\n         message(\"getting cached matrix from memory\")\n         #return the cached inverse\n           return(inverse)\n       }\n    #get matrix supplied as argument\n        data <- x$get()\n     #calculate inverse by applying the solve function\n    \n    inversed <- data %*% solve(data, ...)\n    #cache the result\n       x$setinverse(inverse)\n     #return the result\n       inverse\n  }\n  \n  \n \n  \nc = rbind(c(1, 3), c(5, 6))\ncacheSolve(makeCacheMatrix(c))\n\n  \n",
+    "created" : 1403374872171.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2454041532",
+    "id" : "D35671A2",
+    "lastKnownWriteTime" : 1403378745,
+    "path" : "~/GitHub/datasciencecoursera/rprogramming/programming2/Script.R",
+    "project_path" : "Script.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
